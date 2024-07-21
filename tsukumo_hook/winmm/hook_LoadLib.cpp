@@ -19,6 +19,9 @@ HMODULE WINAPI HookedLoadLibraryExW(LPCSTR lpLibFileName, HANDLE hFile, DWORD dw
         if (config.ReadInt("TEXTPROCESS", "MODE", 0) == 1) {
             InstallHook_dumptext();
         }
+        if (config.ReadInt("TEXTPROCESS", "MODE", 0) == 2) {
+            InstallHook_replacetext();
+        }
     }
     return hModule;
 }

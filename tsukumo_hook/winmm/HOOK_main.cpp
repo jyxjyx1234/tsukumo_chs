@@ -15,10 +15,10 @@ void CreateConsole()
 	{
 		FILE* fp;
 		freopen_s(&fp, "CONOUT$", "w", stdout);
-		setlocale(LC_CTYPE, "zh-CH");
+		setlocale(LC_CTYPE, "ja-jp");
 		// 设置控制台代码页为UTF-8
 		//_setmode(_fileno(stdout), _O_U16TEXT);
-		SetConsoleOutputCP(0);
+		SetConsoleOutputCP(932);
 	}
 }
 
@@ -45,7 +45,7 @@ void HOOK_main() {
 		}		
 		if (config.ReadInt("TEXTPROCESS", "MODE", 0) == 2) {
 			if (a) {
-				
+				InstallHook_replacetext();
 			}
 			else {
 				HOOK_LL_main();

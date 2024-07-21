@@ -5,7 +5,8 @@
 import re
 import json
 import subprocess
-import sys
+import os
+from Lib import *
 
 class HanziReplacer(object):
     def __init__(self) -> None:
@@ -53,7 +54,7 @@ class HanziReplacer(object):
         with open(UFIConfigpath,'r',encoding='utf8',errors='ignore') as f:
             f=json.load(f)
             f["text_processor"]["rules"][0]["source_chars"]=self.source_chars
-            f["text_processor"]["rules"][0]["target_chars"]=self.target_chars
+            f["text_processor"]["rules"][0]["target_chars"]=self.target_chars.replace('·',"・").replace('—',"一")
 
         with open(UFIConfigpath,'w',encoding='utf8') as fout:
             json.dump(f,fout,ensure_ascii=False,indent=4)
@@ -64,9 +65,16 @@ class HanziReplacer(object):
             replaced_string += self.hanzidict.get(char, char)
         return replaced_string
     
-    def ChangeFont(self,ori_font_zh,ori_font_jp,outpath):
-        obj_zh = json.loads(subprocess.check_output(('otfccdump.exe', '-n', '0', '--hex-cmap', '--no-bom', ori_font_zh)))
-        obj_jp = json.loads(subprocess.check_output(('otfccdump.exe', '-n', '0', '--hex-cmap', '--no-bom', ori_font_jp)))
+    def ChangeFont(self,ori_font,outpath,font_name,ori_font_zh=None):
+        obj=json.loads(subprocess.check_output(('otfccdump.exe', '-n', '0', '--hex-cmap', '--no-bom', ori_font)))
+        
+        if not ori_font_zh:
+            obj_zh=obj
+        else:
+            obj_zh=json.loads(subprocess.check_output(('otfccdump.exe', '-n', '0', '--hex-cmap', '--no-bom', ori_font_zh)))
+        
+        for i in range(len(obj['name'])):
+            obj['name'][i]["nameString"]=font_name
         f={}
         for i in range(len(self.source_chars)):
             f[self.source_chars[i]]=self.target_chars[i]
@@ -76,15 +84,20 @@ class HanziReplacer(object):
                 continue
             s = f'U+{ord(key):04X}'
             j = f'U+{ord(value):04X}'
-            try:
-                obj_jp['cmap'][s] = obj_zh['cmap'][j]
-            except:
-                print('字体中不存在:', key, value)
+            #try:
+            obj['cmap'][s] = obj_zh['cmap'][j]
+            if ori_font_zh:
+                obj["glyf"][j]=obj_zh["glyf"][j]
+                if j not in obj["glyph_order"]:
+                    obj["glyph_order"].append(j)
+                if j not in obj["GDEF"]["glyphClassDef"]:
+                    obj["GDEF"]["glyphClassDef"][j]=1
+            #except:
+            #    print('字体中不存在:', key, value)
 
-        subprocess.run(['otfccbuild.exe', '-O3', '-o', outpath], input=json.dumps(obj_jp), encoding='utf-8')
+        subprocess.run(['otfccbuild.exe', '-O3', '-o', outpath], input=json.dumps(obj), encoding='utf-8')
 
 def teshuzifutihuan(text):#匹配时去除特殊字符 
-    text=re.sub('\[([^|\]]+)\|','',text)#删除脚本中的注音标识
     text = text.replace("♪", "").replace("〜", "").replace("～", "").replace("?", "").replace(" ", "").replace('\u3000','').replace('\t','').replace(']','').replace('[・|','').replace('『','').replace('』','').replace('[・・|','').replace("・", "").replace('。','').replace('\n','')
     return text
 

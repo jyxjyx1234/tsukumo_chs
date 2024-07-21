@@ -15,46 +15,49 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hook_createfontindrectA.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="HOOK_main.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="detours.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="text_process.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="readconfig.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="convert.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="hook_createfontindrectA.cpp">
+    <ClCompile Include="..\LIB\HOOK_main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="HOOK_main.cpp">
+    <ClCompile Include="..\LIB\readconfig.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="text_process.cpp">
+    <ClCompile Include="..\LIB\text_process.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="hook_LoadLib.cpp">
+    <ClCompile Include="..\LIB\convert.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="readconfig.cpp">
+    <ClCompile Include="..\LIB\hook_createfontindrectA.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="convert.cpp">
+    <ClCompile Include="..\LIB\hook_LoadLib.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\LIB\text_process.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LIB\convert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LIB\detours.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LIB\hook_createfontindrectA.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LIB\hook_LoadLib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LIB\HOOK_main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LIB\readconfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

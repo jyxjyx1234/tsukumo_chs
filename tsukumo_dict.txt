@@ -1,0 +1,25 @@
+一二三	一二三	name, boy
+百日紅	百日红	name
+伏姫	伏姫	name,girl
+ふせひめ	伏姫	name,girl
+九十九神	九十九神
+鳴	鸣	name,girl
+三角	三角	name,girl
+愛那	爱那	name,girl
+九条	九条	name
+花蓮	花莲	name
+万年青	万年青	name
+聖月	圣月	name
+十月桜	十月樱	name
+李砂	李砂	name
+七飯	七饭	name
+冬真	冬真	name
+九条	九条	name
+鼎	鼎	name
+丈	丈	name
+玉梓	玉梓	name
+葛折町	葛折町	地名
+あやかし	妖
+白蛇精	白蛇精
+四君子	四君子
+五倍子山	五倍子山	地名

@@ -18,7 +18,7 @@ for dic in trans:
 
 hanzireplacer = HanziReplacer()
 hanzireplacer.ReadTransAndGetHanzidict([replacementdict,nameset])
-hanzireplacer.ChangeFont('WenQuanYi.ttf','release\\tsukumo_font.ttf','tsukumo_font')
+hanzireplacer.ChangeFont('WenQuanYi.ttf','release\\tsukumo_font.ttf',font_name='tsukumo_font')
 
 for dic in trans:
     ori = dic['pre_jp'].replace('〜','～')

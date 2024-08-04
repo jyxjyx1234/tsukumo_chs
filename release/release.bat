@@ -5,5 +5,6 @@ rar a release.rar trans.dat
 rar a release.rar tsukumo_font.ttf
 rar a release.rar README.md 
 rar a release.rar dlls\*
+rar a release.rar hook.ini
 rar a release.rar image
 pause
